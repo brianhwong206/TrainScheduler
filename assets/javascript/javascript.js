@@ -20,7 +20,6 @@ $( document ).ready(function() {
     var destinationName = "";
     var firstTrainTime = "";
     var frequency = "";
-    var currentTime ="";
 
     // AddTrain Button Click
     $("#addTrain").on("click", function(event) {
@@ -29,7 +28,7 @@ $( document ).ready(function() {
         // Extract values from input boxes from HTML page
         trainName = $("#trainNameInput").val().trim();
         destinationName = $("#destinationNameInput").val().trim();
-        firstTrainTime = $("#firstTrainTimeInput").val().trim(); //.format("HH:mm");
+        firstTrainTime = $("#firstTrainTimeInput").val().trim().format("HH:mm");
         frequency = $("#frequencyInput").val().trim();
 
         console.log(trainName);
@@ -71,13 +70,22 @@ $( document ).ready(function() {
         var newFrequency = snapshot.val().frequency;
 
         // time calculation for frequency column
-        currentTime = moment();
-        currentTime = moment(currentTime).format("HH:mm");
-        console.log("Current Time: " + currentTime);
-        console.log("First Train Time: " + newFirstTrainTime.format);
-        console.log(moment(firstTrainTime).toNow());
+        var currentTime = moment(); // variable declared to capture the converted current time
+        var format = "HH:mm"; // format is assigned
+        var convertedCurrentTime = moment(currentTime, format);
+        var convertedNewFirstTrainTime = moment(newFirstTrainTime, format);
+        // console.log("Current Time: " + convertedCurrentTime);
+        // console.log("First Train Time: " + convertedNewFirstTrainTime);
+        var timeDiff = (moment(convertedCurrentTime).diff(convertedNewFirstTrainTime)); //???
+        var duration = moment.duration(timeDiff);
+        // console.log(duration); displays the duration in milliseconds
+        var timeDiffMins = Math.floor(duration.asMinutes()); // convert time difference into minutes
+        //console.log(" Minutes Since First Train: " + timeDiffMins); // time elasped since first train in minutes
+        var remainerFromFrequency = timeDiffMins % newFrequency; // uncover the remainder
+        //console.log(newFreq);
+        var timeToNextTrain = newFrequency - remainerFromFrequency;
+        console.log("Minutes Until Next Train: " + timeToNextTrain);
 
-        // create a row, and insert values into the appropriate fields. append row the existing table.
 
         // Create the new row
         var newRow = $("<tr>").append(
@@ -85,7 +93,9 @@ $( document ).ready(function() {
             $("<td>").text(newDestinationName),
             $("<td>").text(newFirstTrainTime),
             $("<td>").text(newFrequency),
-            $("<td>").text(currentTime)
+            $("<td>").text(currentTime),
+            $("<td>").text(""),
+            $("<td>").text(timeToNextTrain)
             //$("<td>").text(empRate) // minutes away.
         );
 
