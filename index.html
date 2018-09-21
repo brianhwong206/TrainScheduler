@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Scheduler</title>
+
+
+    <!-- Reset CSS link -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+    <!-- FireBase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+    <!-- jQuery link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- CSS link -->
+    <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
+
+    <!-- Javascript link -->
+    <script src="assets/javascript/javascript.js"></script>
+
+    <!-- Moment JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+
+</head>
+<body>
+
+    <div class = "main-container">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Train Scheduler</h1>
+            <p class="lead">Thomas the Tank Engine always arrives on time.</p>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped" id = "trainSchedule">
+        <thead>
+            <tr>
+            <th scope="col">Train</th>
+            <th scope="col">Destination</th>
+            <th scope="col">First Train</th>
+            <th scope="col">Frequency (minutes)</th>
+            <th scope="col">Current Time</th>
+            <th scope="col">Next Arrival</th>
+            <th scope="col">Minutes Away</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            </tr>
+        </tbody>
+        </table>
+        
+    <!-- Form Input -->
+    <form>
+        <div class="form-group">
+            <label for="trainName">Train Name:</label>
+            <input type="text" class="form-control" id="trainNameInput" placeholder="Enter Train Name">
+        </div>
+        <div class="form-group">
+            <label for="destinationName">Destination:</label>
+            <input type="text" class="form-control" id="destinationNameInput" placeholder="Enter Destination">
+        </div>
+        <div class="form-group">
+            <label for="firstTrainTime">First Train Time (HH:mm - AM/PM Format):</label>
+            <input type="time" class="form-control" id="firstTrainTimeInput" placeholder="Enter Time for First Train">
+        </div>
+        <div class="form-group">
+            <label for="frequency">Frequency (minutes):</label>
+            <input type="number" class="form-control" id="frequencyInput" placeholder="Frequency of Train" min="0">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id = "addTrain">Submit</button>
+        <button type= "button" class="btn btn-danger" id = "clearTrain">Clear</button>
+        <button type= "button" class="btn btn-warning" id = "clearAllTrains">Clear All</button>
+    </form>
+
+    </div>
+
+    <!-- Bootstrap jquery -->
+
+    <!-- the CDN link below has a conflict with the jquery link in the head -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>  -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
