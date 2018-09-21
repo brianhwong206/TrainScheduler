@@ -83,9 +83,14 @@ $( document ).ready(function() {
         //console.log(" Minutes Since First Train: " + timeDiffMins); // time elasped since first train in minutes
         var remainerFromFrequency = timeDiffMins % newFrequency; // uncover the remainder
         //console.log(newFreq);
-        var timeToNextTrain = newFrequency - remainerFromFrequency;
+        var timeToNextTrain = newFrequency - remainerFromFrequency; // minutes until next train
         console.log("Minutes Until Next Train: " + timeToNextTrain);
 
+        var nextTrain = moment().add(timeToNextTrain, "minutes");
+        console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
+        var convertedNextTrain = moment(nextTrain).format("HH:mm"); // converted in to HH:mm
+
+        convertedCurrentTime = moment(currentTime).format("HH:mm"); // converted in to HH:mm
 
         // Create the new row
         var newRow = $("<tr>").append(
@@ -93,10 +98,9 @@ $( document ).ready(function() {
             $("<td>").text(newDestinationName),
             $("<td>").text(newFirstTrainTime),
             $("<td>").text(newFrequency),
-            $("<td>").text(currentTime),
-            $("<td>").text(""),
+            $("<td>").text(convertedCurrentTime),
+            $("<td>").text(convertedNextTrain),
             $("<td>").text(timeToNextTrain)
-            //$("<td>").text(empRate) // minutes away.
         );
 
         //append newly created row to exising table
