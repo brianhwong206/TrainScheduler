@@ -155,9 +155,7 @@ $( document ).ready(function() {
         console.log("Cleared Current Text Fields");
     });
 
-
-
-    
+  
 
 });
 
