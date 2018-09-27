@@ -38,9 +38,7 @@
         <div class="container">
             <h1 class="display-4">Train Scheduler</h1>
             <p class="lead">Thomas the Tank Engine always arrives on time.</p>
-            <h2 class="display-4">
-                <span id = "time"></span>
-            </h2>
+            <h2 class="display-4" id = "clockDisplay"></h2>
         </div>
     </div>
    
@@ -60,29 +58,29 @@
         </thead>
         <tbody>
             <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td></td>
+            <th scope="row">Beijing South - Shanghai Hongqiao</th>
+            <td>Shanghai</td>
+            <td>07:00</td>
+            <td>30</td>
+            <td class = "currentTime"></td>
             <td></td>
             <td></td>
             </tr>
             <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
+            <th scope="row">Beijing South - Tianjin</th>
+            <td>Tianjin</td>
+            <td>07:00</td>
+            <td>25</td>
+            <td class = "currentTime"></td>
             <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <th scope="row">Beijing West - Lhasa</th>
+            <td>Lhasa</td>
+            <td>20:00</td>
+            <td>1440</td>
+            <td class = "currentTime"></td>
             <td></td>
             <td></td>
             </tr>
@@ -90,28 +88,31 @@
         </table>
         
     <!-- Form Input -->
-    <form>
-        <div class="form-group">
-            <label for="trainName">Train Name:</label>
-            <input type="text" class="form-control" id="trainNameInput" placeholder="Enter Train Name">
-        </div>
-        <div class="form-group">
-            <label for="destinationName">Destination:</label>
-            <input type="text" class="form-control" id="destinationNameInput" placeholder="Enter Destination">
-        </div>
-        <div class="form-group">
-            <label for="firstTrainTime">First Train Time (HH:mm - AM/PM Format):</label>
-            <input type="time" class="form-control" id="firstTrainTimeInput" placeholder="Enter Time for First Train">
-        </div>
-        <div class="form-group">
-            <label for="frequency">Frequency (minutes):</label>
-            <input type="number" class="form-control" id="frequencyInput" placeholder="Frequency of Train" min="0">
-        </div>
 
-        <button type="submit" class="btn btn-primary" id = "addTrain">Submit</button>
-        <button type= "button" class="btn btn-danger" id = "clearTrain">Clear</button>
-        <!-- <button type= "button" class="btn btn-warning" id = "clearAllTrains">Clear All</button> -->
-    </form>
+    <div class = "form-container">
+        <form>
+            <div class="form-group">
+                <label for="trainName">Train Name:</label>
+                <input type="text" class="form-control" id="trainNameInput" placeholder="Enter Train Name">
+            </div>
+            <div class="form-group">
+                <label for="destinationName">Destination:</label>
+                <input type="text" class="form-control" id="destinationNameInput" placeholder="Enter Destination">
+            </div>
+            <div class="form-group">
+                <label for="firstTrainTime">First Train Time (HH:mm - AM/PM Format):</label>
+                <input type="time" class="form-control" id="firstTrainTimeInput" placeholder="Enter Time for First Train">
+            </div>
+            <div class="form-group">
+                <label for="frequency">Frequency (minutes):</label>
+                <input type="number" class="form-control" id="frequencyInput" placeholder="Frequency of Train" min="0">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id = "addTrain">Submit</button>
+            <button type= "button" class="btn btn-danger" id = "clearTrain">Clear</button>
+            <!-- <button type= "button" class="btn btn-warning" id = "clearAllTrains">Clear All Entered Trains</button> -->
+        </form>
+    </div>
 
     </div>
 

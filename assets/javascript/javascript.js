@@ -20,6 +20,7 @@ $( document ).ready(function() {
     var destinationName = "";
     var firstTrainTime = "";
     var frequency = "";
+    var currentTimeString = "";
 
     // AddTrain Button Click
     $("#addTrain").on("click", function(event) {
@@ -72,18 +73,23 @@ $( document ).ready(function() {
         // time calculation for frequency column
         var currentTime = moment(); // variable declared to capture the converted current time
         var format = "HH:mm"; // format is assigned
-        var convertedCurrentTime = moment(currentTime, format);
-        var convertedNewFirstTrainTime = moment(newFirstTrainTime, format);
+        var convertedCurrentTime = moment(currentTime, format); // moment object is declared
+        var convertedNewFirstTrainTime = moment(newFirstTrainTime, format); // moment object is declared
         // console.log("Current Time: " + convertedCurrentTime);
         // console.log("First Train Time: " + convertedNewFirstTrainTime);
-        var timeDiff = (moment(convertedCurrentTime).diff(convertedNewFirstTrainTime)); //???
-        var duration = moment.duration(timeDiff);
+
+        var timeDiff = (moment(convertedCurrentTime).diff(convertedNewFirstTrainTime)); //uncovering the time difference between two moment objects
+        var duration = moment.duration(timeDiff); // , return value is in milliseconds as per UNIX format.
         // console.log(duration); displays the duration in milliseconds
-        var timeDiffMins = Math.floor(duration.asMinutes()); // convert time difference into minutes
+
+        var timeDiffMins = Math.floor(duration.asMinutes()); // convert time difference from UNIX into minutes with asMinutes() method
         //console.log(" Minutes Since First Train: " + timeDiffMins); // time elasped since first train in minutes
-        var remainerFromFrequency = timeDiffMins % newFrequency; // uncover the remainder
+
+
+        var remainerFromFrequency = timeDiffMins % newFrequency; // uncover the remaindering value after division.
         //console.log(newFreq);
-        var timeToNextTrain = newFrequency - remainerFromFrequency; // minutes until next train
+
+        var timeToNextTrain = newFrequency - remainerFromFrequency; // minutes until next train (frequency of the trains - the modulus of stated time and time until next train)
         console.log("Minutes Until Next Train: " + timeToNextTrain);
 
         var nextTrain = moment().add(timeToNextTrain, "minutes");
@@ -92,13 +98,37 @@ $( document ).ready(function() {
 
         convertedCurrentTime = moment(currentTime).format("HH:mm"); // converted in to HH:mm
 
+        // clock function (string)
+        setInterval(function(){
+
+            var time = new Date();
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+    
+            // Add leading zeros
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+            hours = (hours < 10 ? "0" : "") + hours;
+    
+            // Compose the string for display
+            currentTimeString = hours + ":" + minutes + ":" + seconds;
+            $(".currentTime").html(currentTimeString);
+            $("#clockDisplay").html("Current Time: " + "<br>" + currentTimeString);
+        
+        },1000);
+
+
+        //$(".currentTime").text(convertedCurrentTime);
+
         // Create the new row
         var newRow = $("<tr>").append(
-            $("<td>").text(newTrainName),
+            $("<th>").text(newTrainName),
             $("<td>").text(newDestinationName),
             $("<td>").text(newFirstTrainTime),
             $("<td>").text(newFrequency),
-            $("<td>").text(convertedCurrentTime),
+            $("<td class = 'currentTime'>").text(currentTimeString), // test to see if this field can be updated without refreshing or remove the td??
+            //$("<td>").text(convertedCurrentTime),
             $("<td>").text(convertedNextTrain),
             $("<td>").text(timeToNextTrain)
         );
@@ -124,6 +154,10 @@ $( document ).ready(function() {
 
         console.log("Cleared Current Text Fields");
     });
+
+
+
+    
 
 });
 
